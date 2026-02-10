@@ -1,0 +1,435 @@
+/* ============================================
+   Fithub - 種目紹介ページ (exercises.css)
+   ============================================ */
+
+/* ============================================
+   フィルター
+   ============================================ */
+/* ページ全体と最初のカードはアニメーションなし */
+.container {
+    animation: none !important;
+}
+
+.container>.card:first-child {
+    animation: none !important;
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.filter {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #1a1a1a;
+    color: var(--text);
+    font-size: 12px;
+    border: 1px solid var(--border-gold);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.filter.active {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .filter:hover:not(.active) {
+        border-color: var(--gold);
+        color: var(--gold);
+    }
+}
+
+/* ============================================
+   チップ
+   ============================================ */
+.chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.grid .chip {
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #1f1f1f;
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--border-gold);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.grid .chip.active,
+.grid .chip.selected {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+}
+
+/* ============================================
+   種目グリッド
+   ============================================ */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+}
+
+@media (max-width: 860px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   種目カード
+   ============================================ */
+.exercise {
+    background: var(--card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: all 0.2s;
+    animation: fadeInUp 0.4s ease-out backwards;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* 各カードの順番にアニメーション */
+.exercise:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.exercise:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.exercise:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.exercise:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.exercise:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.exercise:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.exercise:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.exercise:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+.exercise:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+.exercise:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.exercise:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-gold);
+}
+
+.exercise.has-video {
+    cursor: pointer;
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.exercise.has-video:hover {
+    border-color: var(--gold);
+    box-shadow: 0 6px 18px rgba(255, 215, 0, 0.15);
+}
+
+.exercise h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* ============================================
+   バッジ（部位・難易度タグ）
+   ============================================ */
+.badges {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.exercise .badge {
+    /* レイアウト - inline-flexで安定した中央揃え */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* サイズ */
+    height: 22px;
+    padding: 0 10px;
+    min-width: 36px;
+    
+    /* 見た目 */
+    background-color: #FFD700;
+    border: 1px solid #FFD700;
+    border-radius: 11px;
+    
+    /* テキスト */
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    color: #000000;
+    white-space: nowrap;
+    text-align: center;
+    
+    /* レンダリング安定化 */
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+/* 難易度バッジ - 初級（緑） */
+.exercise .badge.difficulty-beginner {
+    background-color: #4ade80;
+    border-color: #4ade80;
+    color: #000000;
+}
+
+/* 難易度バッジ - 中級（黄） */
+.exercise .badge.difficulty-intermediate {
+    background-color: #fbbf24;
+    border-color: #fbbf24;
+    color: #000000;
+}
+
+/* 難易度バッジ - 上級（赤） */
+.exercise .badge.difficulty-advanced {
+    background-color: #ef4444;
+    border-color: #ef4444;
+    color: #000000;
+}
+
+/* クリック可能なバッジ */
+.exercise .badge.clickable {
+    cursor: pointer;
+    transition: opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.exercise .badge.clickable:hover {
+    opacity: 0.85;
+}
+
+/* 選択中のバッジ */
+.exercise .badge.clickable.selected {
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
+}
+
+/* クリック可能なチップ */
+.grid .chip.clickable {
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* タッチデバイス以外（マウス操作）でのみホバースタイルを適用 */
+@media (hover: hover) and (pointer: fine) {
+    .grid .chip.clickable:hover:not(.selected) {
+        background-color: #FFD700;
+        color: #000000;
+        border-color: #FFD700;
+    }
+}
+
+/* 選択中のチップ */
+.grid .chip.clickable.selected {
+    background-color: rgba(255, 215, 0, 0.15);
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.25);
+}
+
+/* ============================================
+   ラベル・結果カウント
+   ============================================ */
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.result-count {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+    margin-top: 6px;
+}
+
+/* ============================================
+   動画モーダル
+   ============================================ */
+.video-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 1000;
+}
+
+.video-modal.show {
+    display: flex;
+}
+
+.video-modal-content {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px 20px;
+    width: min(92%, 760px);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    position: relative;
+}
+
+.video-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.video-modal-title {
+    margin: 0;
+    font-size: 18px;
+    color: var(--gold);
+}
+
+.video-modal-close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.video-modal-close:hover {
+    color: var(--gold);
+}
+
+.video-player {
+    width: 100%;
+    max-height: 440px;
+    border-radius: 10px;
+    background: #000;
+}
+
+.video-buffering {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-size: 14px;
+    z-index: 10;
+}
+
+.buffering-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 215, 0, 0.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.video-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.video-btn {
+    padding: 6px 12px;
+    background: #1f1f1f;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+}
+
+.video-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+#videoSeekBar {
+    flex: 1;
+    accent-color: var(--gold);
+}
+
+.video-time-display {
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+    .video-modal-content {
+        padding: 16px;
+        width: 100%;
+    }
+
+    .video-controls {
+        gap: 8px;
+    }
+}

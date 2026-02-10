@@ -1,0 +1,400 @@
+/* ============================================
+   RPG Components - Shared RPG UI Elements
+   ============================================ */
+
+/* ============================================
+   装飾ボーダー
+   ============================================ */
+
+.rpg-border-fancy {
+  position: relative;
+  border: 2px solid var(--rpg-gold);
+  border-radius: 8px;
+  background: var(--rpg-gradient-primary);
+  padding: 20px;
+}
+
+.rpg-border-fancy::before,
+.rpg-border-fancy::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--rpg-gold);
+}
+
+.rpg-border-fancy::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.rpg-border-fancy::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+/* 角に装飾を追加 */
+.rpg-corner-decor::before {
+  content: '⚔️';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px var(--rpg-gold-glow));
+  background: var(--rpg-card);
+  padding: 0 8px;
+}
+
+/* ============================================
+   ステータスバー
+   ============================================ */
+
+.rpg-stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(26, 15, 46, 0.6);
+  border-left: 3px solid var(--rpg-gold);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.rpg-stat-bar:hover {
+  background: rgba(26, 15, 46, 0.8);
+  border-left-color: var(--rpg-gold);
+  transform: translateX(4px);
+}
+
+.rpg-stat-icon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 4px var(--rpg-gold-glow));
+}
+
+.rpg-stat-name {
+  min-width: 45px;
+  font-weight: 700;
+  color: var(--rpg-gold);
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+
+.rpg-stat-value {
+  min-width: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+}
+
+.rpg-stat-bar-fill {
+  flex: 1;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(139, 123, 184, 0.3);
+}
+
+.rpg-stat-bar-fill-inner {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--rpg-gold) 0%, 
+    #FFA500 100%);
+  box-shadow: 0 0 10px var(--rpg-gold-glow);
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.rpg-stat-bar-fill-inner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.3) 0%, 
+    transparent 100%);
+}
+
+/* ============================================
+   RPG風ボタン
+   ============================================ */
+
+.btn-rpg {
+  position: relative;
+  padding: 14px 36px;
+  background: var(--rpg-gradient-gold);
+  color: var(--rpg-bg);
+  border: 2px solid var(--rpg-gold);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 12px rgba(255, 215, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.btn-rpg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-rpg:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.btn-rpg:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(255, 215, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-rpg:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(255, 215, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-rpg:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(50%);
+}
+
+/* アイコン付きボタン */
+.btn-rpg-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ボタンバリエーション */
+.btn-rpg-danger {
+  background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+  border-color: #ff4444;
+  box-shadow: 
+    0 4px 12px rgba(255, 68, 68, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-rpg-danger:hover:not(:disabled) {
+  box-shadow: 
+    0 6px 20px rgba(255, 68, 68, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-rpg-secondary {
+  background: var(--rpg-gradient-primary);
+  color: var(--rpg-gold);
+  border-color: var(--rpg-border);
+  box-shadow: 
+    0 4px 12px rgba(139, 123, 184, 0.3),
+    inset 0 1px 0 rgba(139, 123, 184, 0.3);
+}
+
+.btn-rpg-secondary:hover:not(:disabled) {
+  box-shadow: 
+    0 6px 20px rgba(139, 123, 184, 0.5),
+    inset 0 1px 0 rgba(139, 123, 184, 0.3);
+}
+
+/* ============================================
+   アニメーション
+   ============================================ */
+
+/* レベルアップ時の光エフェクト */
+@keyframes levelUpGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
+
+.level-up-animation {
+  animation: levelUpGlow 1.5s ease-in-out;
+}
+
+/* ボス戦時の赤い脈動 */
+@keyframes bossPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+    border-color: var(--rpg-danger);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 68, 68, 0.6);
+    border-color: #ff6666;
+  }
+}
+
+.boss-battle-mode {
+  animation: bossPulse 2s ease-in-out infinite;
+}
+
+/* クリティカルヒット時の金色パーティクル */
+@keyframes criticalSparkle {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.critical-effect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--rpg-gold);
+  border-radius: 50%;
+  animation: criticalSparkle 0.8s ease-out;
+  pointer-events: none;
+  box-shadow: 0 0 10px var(--rpg-gold-glow);
+}
+
+/* フェードイン */
+@keyframes rpgFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rpg-fade-in {
+  animation: rpgFadeIn 0.5s ease-out;
+}
+
+/* ゴールドシマー */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--rpg-gold) 0%,
+    #FFE55C 50%,
+    var(--rpg-gold) 100%
+  );
+  background-size: 200% auto;
+  animation: goldShimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   カードスタイル
+   ============================================ */
+
+.rpg-card {
+  background: var(--rpg-gradient-primary);
+  border: 2px solid var(--rpg-border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.rpg-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rpg-border);
+}
+
+.rpg-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--rpg-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.rpg-card-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 0 8px var(--rpg-gold-glow));
+}
+
+/* ============================================
+   レスポンシブ
+   ============================================ */
+
+@media (max-width: 768px) {
+  .rpg-stat-bar {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .rpg-stat-icon {
+    font-size: 18px;
+  }
+
+  .rpg-stat-name {
+    min-width: 35px;
+    font-size: 11px;
+  }
+
+  .rpg-stat-value {
+    font-size: 16px;
+    min-width: 30px;
+  }
+
+  .btn-rpg {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .rpg-card {
+    padding: 16px;
+  }
+
+  .rpg-card-title {
+    font-size: 16px;
+  }
+}

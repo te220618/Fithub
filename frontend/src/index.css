@@ -1,0 +1,87 @@
+/* ============================================
+   Fithub React - エントリーポイントCSS
+   既存Thymeleaf版のCSSを完全再利用
+   ============================================ */
+
+/* フォントはindex.htmlで非同期読み込み（レンダリングブロック回避） */
+
+/* Tailwind CSS（ユーティリティのみ使用） */
+@import "tailwindcss";
+
+/* 既存CSS（Thymeleaf版からコピー） */
+@import "./styles/common.css";
+
+/* ページ別CSSは各コンポーネントでインポート */
+/* 例: Dashboard.tsx で import '../styles/dashboard.css' */
+
+/* ============================================
+   Tailwind CSS 用の追加ユーティリティ
+   既存CSSと競合しないクラス名を使用
+   ============================================ */
+
+/* レスポンシブ表示制御 */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* React固有のスタイル（既存CSSに存在しないもの） */
+#root {
+  min-height: 100vh;
+}
+
+/* ローディングスピナー（App.tsx用 - グローバル） */
+.app-loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--gold);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   カスタムスクロールバー (PC向け)
+   ============================================ */
+@media (min-width: 769px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 5px;
+    border: 2px solid var(--bg);
+    transition: background var(--transition-fast);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--gold);
+  }
+
+  /* Firefox */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--bg);
+  }
+}

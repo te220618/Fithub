@@ -1,0 +1,286 @@
+/* DevTools - Spacious and Clean Design */
+
+.dev-tools-wrapper {
+  margin-top: 48px;
+  padding: 32px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 229, 92, 0.05));
+  border-radius: 20px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.dev-tools-header {
+  margin-bottom: 32px;
+}
+
+.dev-tools-header h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin: 0 0 16px 0;
+}
+
+.dev-message {
+  padding: 12px 20px;
+  background: rgba(34, 197, 94, 0.15);
+  border-left: 4px solid #22c55e;
+  border-radius: 8px;
+  color: #86efac;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Layout */
+.dev-tools-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .dev-tools-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sections */
+.dev-section {
+  background: var(--card);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.dev-section h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 24px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border-gold);
+}
+
+.dev-section h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin: 0 0 16px 0;
+}
+
+/* Action Buttons */
+.dev-action-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.dev-btn {
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.dev-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dev-btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--bg);
+}
+
+.dev-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+}
+
+.dev-btn-warning {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: var(--bg);
+}
+
+.dev-btn-warning:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
+}
+
+.dev-btn-danger {
+  background: transparent;
+  border: 2px solid #dc2626;
+  color: #dc2626;
+}
+
+.dev-btn-danger:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+/* Subsections */
+.dev-subsection {
+  margin-bottom: 28px;
+}
+
+.dev-subsection:last-child {
+  margin-bottom: 0;
+}
+
+/* Input Row */
+.dev-input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.dev-input {
+  flex: 1;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dev-input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+/* Quick Buttons */
+.dev-quick-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.dev-quick-btns button {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dev-quick-btns button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Settings Section */
+.dev-settings-section {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.dev-settings-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dev-settings-section::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.dev-settings-section::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+.dev-settings-group {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dev-settings-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Setting Item */
+.dev-setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.dev-setting-item:last-child {
+  margin-bottom: 0;
+}
+
+.dev-label {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.dev-value {
+  font-size: 15px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* EXP Table */
+.dev-exp-table {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.dev-exp-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+}
+
+.dev-exp-row:last-child {
+  border-bottom: none;
+}
+
+.dev-exp-row span:first-child {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.dev-exp-row span:last-child {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.dev-exp-more {
+  text-align: center;
+  padding: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.dev-loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 15px;
+}

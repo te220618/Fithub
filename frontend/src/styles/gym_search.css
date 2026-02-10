@@ -1,0 +1,612 @@
+/* ============================================
+   ジム検索ページ (gym_search.css)
+   ============================================ */
+
+/* ページ全体のアニメーションを無効化（カードのみにアニメーション） */
+.container {
+    animation: none;
+}
+
+/* ============================================
+   検索カード
+   ============================================ */
+.search-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-top: 16px;
+    animation: none;
+    border: 1px solid var(--border-gold);
+}
+
+/* ============================================
+   検索バー
+   ============================================ */
+.searchbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #1f1f1f;
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 10px 12px;
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+.searchbar:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 16px rgba(255, 215, 0, 0.15);
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    filter: brightness(1.2);
+    flex-shrink: 0;
+    transition: filter var(--transition-fast);
+}
+
+.searchbar:focus-within .search-icon {
+    filter: brightness(1.5);
+}
+
+.searchbar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--text);
+    padding-right: 30px;
+}
+
+.searchbar input::placeholder {
+    color: var(--muted);
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    border-radius: 50%;
+}
+
+.search-clear-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   チップ (ジム検索用)
+   ============================================ */
+.chip {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* ============================================
+   価格スライダー (HTML版準拠)
+   ============================================ */
+.range-wrapper {
+    position: relative;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.range-label-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.range-value {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.range-container {
+    position: relative;
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.range-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    z-index: 0;
+}
+
+.range-progress {
+    position: absolute;
+    left: 0;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 3px 0 0 3px;
+    z-index: 1;
+}
+
+.range {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 32px;
+    background: transparent;
+    outline: none;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    margin: 0;
+    touch-action: none;
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: transform var(--transition-fast);
+}
+
+.range::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.price-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    justify-content: flex-end;
+}
+
+.price-input {
+    width: 100px;
+    padding: 6px 10px;
+    background: #1f1f1f;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 14px;
+    text-align: right;
+}
+
+.price-input:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.reset-btn {
+    padding: 8px 16px;
+    background: #1f1f1f;
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.reset-btn:hover {
+    background: #2a2a2a;
+    border-color: var(--gold);
+}
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.result-count {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: right;
+    margin-top: 12px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+/* ============================================
+   ジムカード (HTML版準拠)
+   ============================================ */
+.gym-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    border: 1px solid var(--border-gold);
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.5s ease-out both;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.gym-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(201, 162, 39, 0.12);
+    border-color: var(--gold);
+}
+
+.gym-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+.row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.row-icon {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    filter: brightness(1.2);
+    flex-shrink: 0;
+}
+
+.kv {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.kv .item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.footer-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+}
+
+.footer-chip {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255, 215, 0, 0.05);
+    color: var(--muted);
+    font-size: 11px;
+    border: 1px solid var(--border);
+    transition: all var(--transition-fast);
+}
+
+.footer-chip.active {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* ============================================
+   レスポンシブ
+   ============================================ */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   表示切り替えボタン
+   ============================================ */
+.title-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.view-toggle-btn {
+    padding: 8px 16px;
+    background: #1f1f1f;
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.view-toggle-btn:hover {
+    background: #2a2a2a;
+    border-color: var(--gold);
+}
+
+.view-toggle-btn.active {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ============================================
+   地図コンテナ
+   ============================================ */
+.gym-map-container {
+    width: 100%;
+    height: 500px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 16px;
+    border: 1px solid var(--border-gold);
+    box-shadow: var(--shadow);
+}
+
+.gym-map-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    margin-top: 16px;
+}
+
+/* ============================================
+   現在地マーカー
+   ============================================ */
+.current-location-marker {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.current-location-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: #4285f4;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.current-location-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(66, 133, 244, 0.2);
+    border-radius: 50%;
+    animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   ジムマーカー
+   ============================================ */
+.gym-marker {
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.gym-marker:hover {
+    transform: scale(1.1) translateY(-4px);
+}
+
+.gym-marker-svg {
+    display: block;
+}
+
+/* ============================================
+   ポップアップ (InfoWindow) のダークテーマ化
+   ============================================ */
+/* InfoWindowの外枠・背景 */
+.gm-style-iw {
+    background-color: var(--card) !important;
+    border: 1px solid var(--gold) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+    padding: 0 !important;
+}
+
+/* 吹き出しのしっぽ（三角形） */
+.gm-style-iw-tc::after {
+    background-color: var(--card) !important;
+    border: 1px solid var(--gold);
+    border-top: none;
+    border-left: none;
+}
+
+/* コンテンツコンテナ */
+.gm-style-iw-d {
+    overflow: auto !important;
+    max-height: 300px !important;
+    background-color: transparent !important;
+    /* スクロールバースタイル（黒くて細い） */
+    scrollbar-width: thin;
+    scrollbar-color: #333 transparent;
+}
+
+.gm-style-iw-d::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.gm-style-iw-d::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.gm-style-iw-d::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+}
+
+/* 閉じるボタン */
+.gm-ui-hover-effect {
+    top: 4px !important;
+    right: 4px !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50% !important;
+}
+
+.gm-ui-hover-effect span {
+    background-color: var(--text) !important;
+}
+
+/* ============================================
+   ポップアップ内部デザイン (GymMap.tsx内)
+   ============================================ */
+.gym-popup {
+    min-width: 220px;
+    max-width: 280px;
+    padding: 12px;
+    background: transparent;
+}
+
+.gym-popup-name {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.gym-popup-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.gym-popup-icon {
+    width: 14px;
+    height: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    filter: brightness(0) saturate(100%) invert(84%) sepia(29%) rotate(1deg) Abraham(255, 215, 0); /* Gold filter */
+    filter: brightness(2); /* シンプルに明るく */
+}
+
+.gym-popup-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    /* スクロールバースタイル（縦横共通） */
+    scrollbar-width: thin;
+    scrollbar-color: #333 transparent;
+}
+
+.gym-popup-tags::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.gym-popup-tags::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.gym-popup-tags::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+}
+
+.gym-popup-tag {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #2a2a2a;
+    color: var(--muted);
+    font-size: 11px;
+    border: 1px solid var(--border);
+}
+
+.gym-popup-tag.active {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* ============================================
+   レスポンシブ（地図）
+   ============================================ */
+@media (max-width: 768px) {
+    .gym-map-container {
+        height: 400px;
+    }
+
+    .title-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .view-toggle-btn,
+    .reset-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .title-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+}

@@ -1,0 +1,186 @@
+/* ============================================
+   Fithub - ヘルプページ (help.css)
+   ============================================ */
+
+.help-container {
+  display: block;
+}
+
+.help-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.help-tab {
+  background: #151515;
+  border: 1px solid var(--border-gold);
+  border-radius: 999px;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.help-tab:hover {
+  border-color: var(--gold);
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.help-tab.active {
+  background: var(--gold);
+  color: var(--bg-dark);
+  border-color: var(--gold);
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.help-content-card {
+  margin-top: 12px;
+}
+
+.help-summary {
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.help-section {
+  margin-top: 16px;
+}
+
+.help-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+/* ①②③ スタイルのステップリスト */
+.help-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: help-step;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.help-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  counter-increment: help-step;
+}
+
+.help-steps li::before {
+  content: counter(help-step);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--gold);
+  color: var(--bg-dark);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3);
+}
+
+/* Tipsリスト（従来スタイル） */
+.help-tips {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.help-tips li {
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.help-tips li::marker {
+  color: var(--gold);
+}
+
+/* ============================================
+   ヘルプ画像セクション
+   ============================================ */
+
+/* 各画像セクション（メイン画面・モーダルごと） */
+.help-image-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.help-image-section:first-of-type {
+  margin-top: 16px;
+  padding-top: 0;
+  border-top: none;
+}
+
+.help-images {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.help-image-container {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0a0a0a;
+  margin-top: 16px;
+}
+
+.help-image-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--gold);
+  color: var(--bg-dark);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.help-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* モバイルでは画像を少し小さく */
+@media (max-width: 768px) {
+  .help-image-section {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+  .help-images {
+    gap: 12px;
+  }
+  
+  .help-image-container {
+    border-radius: 6px;
+    margin-top: 12px;
+  }
+  
+  .help-image {
+    border-radius: 6px;
+  }
+}

@@ -1,0 +1,272 @@
+/* ============================================
+   Daily Reward Modal Styles
+   ============================================ */
+
+.daily-reward-modal {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 90%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--text);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--gold);
+}
+
+.reward-progress {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Reward Grid */
+.reward-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.reward-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+/* Reward Tile */
+.reward-tile {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.reward-tile .tile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.reward-tile .tile-day {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.reward-tile .tile-check {
+  color: var(--success);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.reward-tile .tile-reward {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.reward-tile .tile-icon {
+  font-size: 16px;
+}
+
+.reward-tile .tile-mystery {
+  font-size: 20px;
+  color: var(--muted);
+  font-weight: bold;
+}
+
+/* Tile States */
+.reward-tile.claimed {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: var(--success);
+}
+
+.reward-tile.today {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
+  border-color: var(--gold);
+  animation: todayPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+@keyframes todayPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+}
+
+.reward-tile.future {
+  opacity: 0.5;
+}
+
+.reward-tile.big-reward {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 100, 100, 0.1));
+  border-color: var(--gold);
+}
+
+.reward-tile.big-reward .tile-day {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Claim Button */
+.reward-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.claim-btn {
+  background: linear-gradient(135deg, var(--gold), #ffa500);
+  color: var(--bg);
+  border: none;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.claim-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+.claim-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.claim-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.claim-btn.claimed {
+  background: var(--border);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* Loading & Error States */
+.reward-loading,
+.reward-error {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+}
+
+.reward-error {
+  color: var(--error);
+}
+
+/* Dashboard Button */
+.daily-reward-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+}
+
+.daily-reward-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
+  transform: translateY(-1px);
+}
+
+.daily-reward-btn.has-reward {
+  animation: rewardPulse 2s ease-in-out infinite;
+}
+
+@keyframes rewardPulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+  50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .daily-reward-modal {
+    padding: 16px;
+    width: 95%;
+  }
+
+  .reward-week {
+    gap: 4px;
+  }
+
+  .reward-tile .tile-content {
+    font-size: 10px;
+  }
+
+  .reward-tile .tile-icon {
+    font-size: 14px;
+  }
+
+  .reward-tile .tile-day {
+    font-size: 8px;
+  }
+
+  .claim-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,1276 @@
+/* ============================================
+   Fithub - ダッシュボードページ (dashboard.css)
+   ============================================ */
+
+/* ============================================
+   ウェルカムカード
+   ============================================ */
+.welcome-card {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 165, 0, 0.1) 50%, rgba(42, 42, 42, 1) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeInUp 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--text);
+}
+
+.welcome-title span {
+    color: var(--gold);
+}
+
+.welcome-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+.login-bonus-toast {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
+    border: 1px solid var(--gold);
+    border-radius: var(--radius);
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    animation: bounceIn 0.5s ease-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.welcome-decoration {
+    font-size: 64px;
+    opacity: 0.8;
+}
+
+/* ============================================
+   レベル・経験値カード
+   ============================================ */
+.level-card {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, var(--card) 100%);
+    border: 1px solid var(--border-gold);
+    margin-top: 24px;
+    animation: fadeInUp 0.5s ease-out;
+    animation-delay: 0.05s;
+}
+
+.level-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.level-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.level-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.level-label {
+    font-size: 14px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.level-number {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.exp-details {
+    text-align: right;
+}
+
+.exp-text {
+    font-size: 16px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.exp-to-next {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.level-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.level-progress-bar-large {
+    flex: 1;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.level-progress-bar-large .level-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.level-progress-percent {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    min-width: 40px;
+    text-align: right;
+}
+
+/* ============================================
+   統計グリッド
+   ============================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.stats-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.stat-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--border-gold);
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.stat-card-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.stat-card-link:hover {
+    transform: translateY(-6px) rotateX(2deg);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: var(--gold);
+}
+
+.stat-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px) rotateX(2deg);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: var(--border-gold);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.stat-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* partner-card専用スタイル - ペット画像をオーバーフロー表示 */
+.partner-card {
+    position: relative;
+    overflow: visible;
+}
+
+.partner-card .stat-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 12px;
+    position: relative;
+}
+
+.partner-card .stat-icon img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.stats-grid .stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.stat-bonus {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.stat-bonus.positive {
+    color: #4ade80;
+}
+
+.stat-timer {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+/* ============================================
+   クイックアクション
+   ============================================ */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.quick-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 16px;
+    background: #1f1f1f;
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    position: relative;
+    z-index: 10;
+    isolation: isolate;
+}
+
+.quick-action-btn:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--gold);
+    transform: translateY(-4px);
+}
+
+.quick-action-icon {
+    font-size: 24px;
+}
+
+/* ============================================
+   最近の記録
+   ============================================ */
+.recent-records {
+    margin-top: 16px;
+}
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: #1f1f1f;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all var(--transition-fast);
+}
+
+.record-item:hover {
+    border-color: var(--border-gold);
+    transform: translateX(4px);
+}
+
+.record-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.record-icon {
+    font-size: 18px;
+}
+
+.record-date-text {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.record-count {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--gold);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ============================================
+   空状態
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+}
+
+.quick-action-icon {
+    font-size: 24px;
+}
+
+/* ============================================
+   最近の記録
+   ============================================ */
+.recent-records {
+    margin-top: 16px;
+}
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: #1f1f1f;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all var(--transition-fast);
+}
+
+.record-item:hover {
+    border-color: var(--border-gold);
+    transform: translateX(4px);
+}
+
+.record-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.record-icon {
+    font-size: 18px;
+}
+
+.record-date-text {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.record-count {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--gold);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ============================================
+   空状態
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+}
+
+.empty-state p {
+    margin-bottom: 0;
+}
+
+.empty-state .btn {
+    display: inline-flex;
+    flex: none;
+}
+
+/* ============================================
+   最近の記録 2カラムレイアウト
+   ============================================ */
+.recent-section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.recent-records-card {
+    min-height: 300px;
+}
+
+.right-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+.right-column-wrapper .card {
+    margin-top: 0;
+}
+
+.volume-chart-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* コンパクト版レコードアイテム（1行形式） */
+.record-item-compact {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #1f1f1f;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: all var(--transition-fast);
+    font-size: 13px;
+}
+
+.record-item-compact:hover {
+    border-color: var(--border-gold);
+}
+
+.record-date-compact {
+    color: var(--text);
+    font-weight: 600;
+    min-width: 40px;
+}
+
+.record-info-compact {
+    flex: 1;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.record-info-compact .separator {
+    color: var(--border);
+    font-size: 10px;
+}
+
+.record-exp-compact {
+    color: #4ade80;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* 旧スタイル（互換用） */
+.record-item-enhanced {
+    padding: 16px;
+    background: #1f1f1f;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: all var(--transition-fast);
+}
+
+.record-item-enhanced:hover {
+    border-color: var(--border-gold);
+    transform: translateX(4px);
+}
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.record-exp {
+    color: #4ade80;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.recent-records .record-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.record-muscles {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ミニ棒グラフ */
+.volume-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex: 1;
+    min-height: 100px;
+    padding: 8px 0;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.bar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.bar {
+    width: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, #8B2500 100%);
+    border-radius: 4px 4px 0 0;
+    min-height: 2px;
+    transition: height 0.3s ease;
+}
+
+.bar-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+/* 空のレコードアイテム */
+.record-item-empty {
+    opacity: 0.5;
+}
+
+.record-item-empty:hover {
+    transform: none;
+    border-color: var(--border);
+}
+
+/* ============================================
+   コンディション管理カード
+   ============================================ */
+.recovery-status-card {
+    min-height: 150px;
+}
+
+.recovery-status-content {
+    margin-top: 16px;
+}
+
+.recommendation-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(255, 100, 50, 0.15) 0%, rgba(255, 215, 0, 0.1) 100%);
+    border: 1px solid rgba(255, 100, 50, 0.3);
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.recommendation-icon {
+    font-size: 24px;
+}
+
+.recommendation-text {
+    font-size: 14px;
+    color: var(--text);
+}
+
+.recommendation-days {
+    color: var(--muted);
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.muscle-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.muscle-status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #1f1f1f;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+}
+
+.muscle-status-item:hover {
+    border-color: var(--border-gold);
+}
+
+.muscle-name {
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 80px;
+}
+
+.muscle-days {
+    color: var(--muted);
+    font-size: 12px;
+    flex: 1;
+    text-align: center;
+}
+
+.muscle-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-recovering {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.badge-ready {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.badge-stale {
+    background: rgba(234, 179, 8, 0.2);
+    color: #eab308;
+}
+
+/* レスポンシブ: モバイルでは1カラム */
+@media (max-width: 768px) {
+    .recent-section-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   ヒートマップカレンダー (GitHub Style)
+   ============================================ */
+.heatmap-section {
+    margin-top: 24px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.heatmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 年セレクターのドロップダウン */
+.year-selector-dropdown {
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+    color: var(--text);
+}
+
+.heatmap-selectors {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.half-year-selector {
+    display: block;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+    color: var(--text);
+}
+
+/* PC版では上半期/下半期セレクターを非表示 */
+.half-year-selector.mobile-only {
+    display: none;
+}
+
+/* 四半期セレクター（極小画面用） */
+.quarter-selector {
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+    color: var(--text);
+}
+
+@media (max-width: 767px) {
+    .half-year-selector.mobile-only {
+        display: block;
+    }
+}
+
+/* ============================================
+   ヒートマップ スワイプ機能
+   ============================================ */
+.heatmap-viewport {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* モバイルのみスワイプカーソル */
+@media (max-width: 767px) {
+    .heatmap-viewport {
+        cursor: grab;
+    }
+
+    .heatmap-viewport:active {
+        cursor: grabbing;
+    }
+}
+
+.heatmap-track {
+    display: flex;
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+}
+
+.heatmap-track.dragging {
+    transition: none;
+}
+
+.heatmap-panel {
+    flex: 0 0 100%;
+    min-width: 100%;
+}
+
+.heatmap-wrapper {
+    margin-top: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    position: relative;
+    z-index: 20;
+}
+
+.heatmap-months {
+    position: relative;
+    height: 20px;
+    margin-left: 20px;
+    margin-bottom: 0;
+}
+
+.month-label {
+    position: absolute;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.heatmap-body {
+    display: flex;
+    gap: 2px;
+}
+
+.heatmap-weekdays {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 16px;
+    flex-shrink: 0;
+}
+
+.weekday-label {
+    height: 14px;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+}
+
+.heatmap-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    gap: 1px;
+    flex-grow: 1;
+}
+
+.heatmap-cell {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.heatmap-cell:hover {
+    transform: scale(1.4);
+    cursor: pointer;
+    animation: pulse-glow 0.6s ease-in-out;
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        transform: scale(1.4);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+}
+
+.heatmap-cell.empty {
+    visibility: hidden;
+}
+
+.heatmap-cell.level-0 {
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+}
+
+.heatmap-cell.level-1 {
+    background: linear-gradient(135deg, #4a1c1c 0%, #5c2a1a 100%);
+    box-shadow: 0 0 3px rgba(92, 42, 26, 0.3);
+}
+
+.heatmap-cell.level-2 {
+    background: linear-gradient(135deg, #8B2500 0%, #a33a10 100%);
+    box-shadow: 0 0 5px rgba(139, 37, 0, 0.4);
+}
+
+.heatmap-cell.level-3 {
+    background: linear-gradient(135deg, #E25822 0%, #f06830 100%);
+    box-shadow: 0 0 8px rgba(226, 88, 34, 0.5);
+}
+
+.heatmap-cell.level-4 {
+    background: linear-gradient(135deg, #FF4500 0%, #FF6B35 100%);
+    box-shadow: 0 0 12px rgba(255, 69, 0, 0.7);
+}
+
+.heatmap-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.legend-cell {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+}
+
+.legend-cell.level-0 {
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+}
+
+.legend-cell.level-1 {
+    background: linear-gradient(135deg, #4a1c1c 0%, #5c2a1a 100%);
+}
+
+.legend-cell.level-2 {
+    background: linear-gradient(135deg, #8B2500 0%, #a33a10 100%);
+}
+
+.legend-cell.level-3 {
+    background: linear-gradient(135deg, #E25822 0%, #f06830 100%);
+}
+
+.legend-cell.level-4 {
+    background: linear-gradient(135deg, #FF4500 0%, #FF6B35 100%);
+}
+
+.legend-label {
+    margin: 0 4px;
+}
+
+/* 2列の統計グリッド */
+.stats-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 4列の統計グリッド */
+.stats-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* 統計カードの新スタイル */
+.stat-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px 16px;
+    text-align: center;
+    border: 1px solid var(--border-gold);
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.5s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+}
+
+.stat-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px) rotateX(2deg);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: var(--border-gold);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.stat-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.stat-value-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+}
+
+.stats-grid .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+}
+
+.stat-unit {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.stat-change {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+    padding: 2px 10px;
+    border-radius: 12px;
+}
+
+.stat-change.positive {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.15);
+}
+
+.stat-change.negative {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+}
+
+.stat-best {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+/* カスタムツールチップ */
+.heatmap-tooltip {
+    position: fixed;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 8px rgba(255, 69, 0, 0.3);
+    border: 1px solid rgba(255, 69, 0, 0.3);
+    white-space: nowrap;
+}
+
+/* ============================================
+   レスポンシブ
+   ============================================ */
+@media (max-width: 860px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-card {
+        padding: 24px;
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .welcome-title {
+        font-size: 22px;
+        word-break: break-word;
+    }
+
+    .welcome-decoration {
+        font-size: 48px;
+    }
+
+    /* レベルカードのモバイル対応 */
+    .level-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .level-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .level-number {
+        font-size: 40px;
+    }
+
+    .exp-details {
+        text-align: center;
+    }
+
+    .stats-grid .stat-value {
+        font-size: 28px;
+    }
+
+    .heatmap-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .heatmap-section {
+        overflow: hidden;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .heatmap-viewport {
+        overflow: hidden;
+        max-width: 100%;
+        position: relative;
+    }
+
+    .heatmap-track {
+        position: relative;
+    }
+
+    .heatmap-panel {
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .heatmap-wrapper {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* IE/Edge */
+        margin: 0;
+        padding: 0 24px 8px 0;
+        box-sizing: border-box;
+    }
+
+    .heatmap-wrapper::-webkit-scrollbar {
+        display: none;
+        /* Chrome/Safari */
+    }
+
+    .heatmap-grid {
+        min-width: max-content;
+        gap: 2px;
+        padding-right: 8px;
+    }
+
+    .heatmap-cell {
+        width: 11px;
+        height: 11px;
+    }
+
+    .weekday-label {
+        height: 11px;
+        font-size: 9px;
+    }
+
+    .heatmap-weekdays {
+        width: 14px;
+        gap: 2px;
+    }
+
+    .heatmap-months {
+        margin-left: 16px;
+        padding-right: 16px;
+    }
+
+    /* コンテナの右端見切れ対策 */
+    .container {
+        overflow-x: hidden;
+    }
+
+    /* カードの右端見切れ対策 */
+    .card {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    /* 統計グリッドのレスポンシブ修正 */
+    .stats-grid-2 {
+        gap: 12px;
+    }
+
+    /* 4列グリッドを2×2に変更 */
+    .stats-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* 6列グリッドを2×3に変更 */
+    .stats-grid-6 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px 12px;
+        min-height: 120px;
+    }
+
+    .stat-icon {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .stats-grid .stat-value {
+        font-size: 24px;
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    .stat-unit {
+        font-size: 12px;
+    }
+
+    .stat-change {
+        font-size: 11px;
+        padding: 2px 8px;
+    }
+}
+
+/* ============================================
+   3D 筋肉ヒートマップセクション
+   ============================================ */
+.body-heatmap-section {
+    margin-top: 24px;
+    animation: fadeInUp 0.6s ease-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+}

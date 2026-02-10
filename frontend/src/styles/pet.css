@@ -1,0 +1,1029 @@
+/* ペットページスタイル */
+/* 基本構造は settings.css の .settings-page, .settings-card 等を使用 */
+
+.pet-page {
+  /* フォールバック用 */
+  min-height: 100%;
+}
+
+/* ?????????2????????????? */
+.active-pet-section .settings-grid {
+  grid-template-rows: auto;
+  align-items: start;
+  gap: 16px;
+}
+
+/* ローディング・エラー */
+.pet-loading,
+.pet-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--text-muted);
+}
+
+.pet-loading .loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ビジュアルセクション（固有スタイル） */
+.pet-visual-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  min-height: 300px;
+  /* settings-cardのスタイルを一部上書き */
+  border: none !important;
+}
+
+.pet-sprite {
+  font-size: 8rem;
+  line-height: 1;
+  user-select: none;
+  transition: transform 0.3s ease;
+  margin-top: 3rem;
+}
+
+.pet-emoji {
+  display: block;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* アニメーション */
+.bounce-happy {
+  animation: bounceHappy 0.6s ease-in-out infinite;
+}
+
+.bounce-normal {
+  animation: bounceNormal 1s ease-in-out infinite;
+}
+
+.sway {
+  animation: sway 2s ease-in-out infinite;
+}
+
+.droop {
+  animation: droop 3s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.sleep {
+  animation: sleep 4s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes bounceHappy {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-15px) scale(1.05);
+  }
+}
+
+@keyframes bounceNormal {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes sway {
+
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes droop {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(5px) rotate(2deg);
+  }
+}
+
+@keyframes sleep {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+/* 吹き出し */
+.pet-speech-bubble {
+  position: absolute;
+  bottom: 0rem;
+  background: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  z-index: 10;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pet-speech-bubble::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+}
+
+.pet-speech-bubble p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+  /* 吹き出し内は常に黒文字 */
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ペット情報ヘッダー */
+.pet-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pet-name-display {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.pet-name-display h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  /* colorはインラインスタイルまたはsettings.cssで制御 */
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.edit-btn:hover {
+  opacity: 1;
+}
+
+.pet-name-form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.pet-name-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.pet-name-form button[type="submit"] {
+  background: var(--gold);
+  color: black;
+  font-weight: bold;
+}
+
+.pet-name-form button[type="button"] {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+}
+
+/* ステータス */
+.pet-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-label {
+  min-width: 70px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.stage-badge {
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* 卵 - 紫の光沢 */
+.stage-badge.stage-1 {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+}
+
+/* 成長期 - 緑の光沢 */
+.stage-badge.stage-2 {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+}
+
+/* 覚醒 - 金の光沢 */
+.stage-badge.stage-3 {
+  background: linear-gradient(135deg, #fde047 0%, #f59e0b 100%);
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.level-value {
+  font-size: 1.25rem;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+/* 経験値バー */
+.exp-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.exp-bar-container {
+  width: 100%;
+}
+
+.exp-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+
+.exp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, #ffd700 100%);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.exp-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.exp-next {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* 元気度バー */
+.mood-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mood-bar {
+  flex: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.mood-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.mood-bar-fill.mood-絶好調 {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+}
+
+.mood-bar-fill.mood-元気 {
+  background: #84cc16;
+}
+
+.mood-bar-fill.mood-普通 {
+  background: #eab308;
+}
+
+.mood-bar-fill.mood-寂しい {
+  background: #f97316;
+}
+
+.mood-bar-fill.mood-弱っている {
+  background: #ef4444;
+}
+
+.mood-bar-fill.mood-眠そう {
+  background: #60a5fa;
+}
+
+.mood-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-width: 70px;
+}
+
+.mood-label.mood-絶好調 {
+  color: #22c55e;
+}
+
+.mood-label.mood-元気 {
+  color: #84cc16;
+}
+
+.mood-label.mood-普通 {
+  color: #eab308;
+}
+
+.mood-label.mood-寂しい {
+  color: #f97316;
+}
+
+.mood-label.mood-弱っている {
+  color: #ef4444;
+}
+
+.mood-label.mood-眠そう {
+  color: #60a5fa;
+}
+
+/* 進化ガイド & 元気度ガイド */
+/* コンテナスタイルは settings-card で代用 */
+
+.evolution-stages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.evolution-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  opacity: 0.5;
+  transition: all 0.3s;
+  min-width: 80px;
+}
+
+.evolution-stage.active {
+  opacity: 1;
+}
+
+.evolution-stage.current {
+  transform: scale(1.05);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 卵 - 紫の光沢 */
+.evolution-stage.stage-1.current {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(124, 58, 237, 0.3) 100%);
+  border-color: #a855f7;
+}
+
+/* 成長期 - 緑の光沢 */
+.evolution-stage.stage-2.current {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
+  border-color: #22c55e;
+}
+
+/* 覚醒 - 金の光沢 */
+.evolution-stage.stage-3.current {
+  background: linear-gradient(135deg, rgba(253, 224, 71, 0.3) 0%, rgba(245, 158, 11, 0.3) 100%);
+  border-color: #fde047;
+}
+
+.stage-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.stage-image {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.25rem;
+}
+
+.stage-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.stage-level {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.evolution-arrow {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+}
+
+.evolution-hint {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* 元気度リスト */
+.mood-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mood-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.mood-indicator {
+  font-size: 0.75rem;
+}
+
+/* 逃がすボタン周り */
+.pet-release-hint {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.pet-release-btn {
+  /* 基本スタイル */
+  padding: 0.75rem 1.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: block;
+  margin: 0 auto;
+}
+
+.pet-release-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* 選択画面の拡張スタイル */
+.pet-type-card-enhanced {
+  transition: all 0.2s ease;
+}
+
+.pet-type-card-enhanced:hover:not(:disabled) {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+
+/* 初期選択画面用ビジュアル */
+.pet-type-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.pet-type-image {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.pet-type-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+/* レスポンシブ */
+@media (max-width: 480px) {
+  .pet-visual-section {
+    padding: 2rem 1rem;
+    min-height: 250px;
+  }
+
+  .pet-sprite {
+    font-size: 6rem;
+  }
+
+  .evolution-stages {
+    gap: 0.25rem;
+  }
+
+  .evolution-stage {
+    padding: 0.5rem;
+    min-width: 60px;
+  }
+
+  .stage-emoji {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================ */
+/* 小屋システム用スタイル */
+/* ============================================ */
+
+/* セクションタイトル */
+.barn-section-title {
+  font-size: 1.25rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--gold);
+}
+
+/* 小屋カード */
+.barn-card {
+  padding: 16px;
+}
+
+.barn-card:hover {
+  transform: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* タブナビゲーション */
+.barn-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.barn-tab {
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.barn-tab:hover {
+  border-color: var(--gold);
+  color: var(--text-color);
+}
+
+.barn-tab.active {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: var(--gold);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* 小屋グリッド */
+.barn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0;
+  row-gap: 0;
+  column-gap: 0;
+  align-content: start;
+}
+
+/* ペットカード（小屋内） */
+.pet-barn-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.pet-barn-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.pet-barn-card.active {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.pet-active-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: var(--gold);
+  color: black;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  z-index: 5;
+}
+
+/* カード内ビジュアル */
+.pet-card-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  border-radius: 8px 8px 0 0;
+  margin: -1rem -1rem 1rem -1rem;
+}
+
+.pet-card-image {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.pet-card-emoji {
+  font-size: 4rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* カード情報 */
+.pet-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pet-card-name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.pet-card-type {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.pet-card-stats {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.pet-card-level {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.pet-card-stage {
+  font-size: 0.8rem;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* 卵 - 紫の光沢 */
+.pet-card-stage.stage-1 {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+}
+
+/* 成長期 - 緑の光沢 */
+.pet-card-stage.stage-2 {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+}
+
+/* 覚醒 - 金の光沢 */
+.pet-card-stage.stage-3 {
+  background: linear-gradient(135deg, #fde047 0%, #f59e0b 100%);
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* カード内EXPバー */
+.pet-card-exp {
+  margin-top: 0.25rem;
+}
+
+.pet-card-exp-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.pet-card-exp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, #ffd700 100%);
+  border-radius: 3px;
+}
+
+/* アクティブ化ボタン */
+.pet-card-activate-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--gold);
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pet-card-activate-btn:hover:not(:disabled) {
+  background: #e6c200;
+  transform: scale(1.02);
+}
+
+.pet-card-activate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 入手ボタン */
+.pet-card-get-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pet-card-get-btn:hover:not(:disabled) {
+  background: var(--gold);
+  color: black;
+}
+
+.pet-card-get-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 新規ペットカード */
+.new-pet-card {
+  border-style: dashed;
+}
+
+.pet-card-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* 解放バッジ */
+.pet-unlock-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+}
+
+.pet-unlock-badge.unlocked {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.pet-unlock-badge.locked {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+/* 未解放カード */
+.locked-pet-card {
+  opacity: 0.7;
+}
+
+.locked-pet-card .pet-card-visual.locked {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.locked-image {
+  filter: grayscale(100%) brightness(0.5);
+}
+
+.locked-emoji {
+  opacity: 0.4;
+}
+
+.locked-pet-card .locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  z-index: 5;
+}
+
+/* 空状態 */
+.barn-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-muted);
+}
+
+.barn-empty p {
+  margin: 0.5rem 0;
+}
+
+.barn-empty-hint {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* ペット画像 */
+.pet-image {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+/* 作成エラー */
+.pet-create-error {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+/* レスポンシブ（小屋用） */
+@media (max-width: 600px) {
+  .barn-tabs {
+    justify-content: center;
+  }
+
+  .barn-tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .barn-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pet-card-visual {
+    height: 120px;
+  }
+
+  .pet-card-emoji {
+    font-size: 3rem;
+  }
+}
+
+/* ============================================ */
+/* 背景画像対応スタイル */
+/* ============================================ */
+
+/* 背景画像使用時のオーバーレイ（コントラスト確保） */
+.pet-visual-section.has-bg-image,
+.pet-card-visual.has-bg-image {
+  position: relative;
+}
+
+.pet-visual-section.has-bg-image::before,
+.pet-card-visual.has-bg-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: inherit;
+  z-index: 0;
+}
+
+/* 背景画像使用時に子要素を前面に */
+.pet-visual-section>*,
+.pet-card-visual>* {
+  position: relative;
+  z-index: 1;
+}
