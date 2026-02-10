@@ -1,0 +1,72 @@
+# Rust / Cargo
+/target
+**/*.rs.bk
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+**/keystore.properties
+**/keystore.properties.example
+secrets/
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS Generated
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs & Debug
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build & Cache
+dist/
+build/
+*.cache
+.cache/
+static/assets/
+
+# Node.js / Frontend
+node_modules/
+frontend/node_modules/
+.npm/
+.yarn/
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# AWS / Elastic Beanstalk
+.elasticbeanstalk/app_versions/
+cf-*.json
+cloudfront-*.json
+
+# Workspace
+workspace/
+
+# Outputs
+outputs/
